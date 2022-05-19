@@ -1,5 +1,4 @@
-from src.RFM import read_multi_csv
-from src.RFM import recency, frequency, monetary, rfm_merge
+from src.RFM import read_multi_csv, recency, frequency, monetary, rfm_merge
 from src.grade import get_rfm_grade, get_rfm_score, get_grade_range
 
 path = "D:data"
@@ -8,7 +7,7 @@ ref_date = '2022-02-16'
 # 데이터 불러오기
 df = read_multi_csv(f'{path}/CRM', "utf-8")
 df_r = recency(df[['ID', 'DT']], 'recency', ['ID'], 'DT', ref_date)
-df_f = frequency(df[['ID', 'PRICE']], 'frequency', ['ID'], 'PRICE')
+df_f = frequency(df[['ID', 'DT']], 'frequency', ['ID'], 'DT')
 df_m = monetary(df[['ID', 'PRICE']], 'monetary', ['ID'], 'PRICE')
 
 # 데이터 병합
